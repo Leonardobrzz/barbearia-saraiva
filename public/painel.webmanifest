@@ -1,0 +1,17 @@
+{
+  "id": "/painel",
+  "name": "Saraiva · Painel",
+  "short_name": "Painel Saraiva",
+  "description": "Agenda e gestão da Barbearia Saraiva",
+  "start_url": "/painel",
+  "scope": "/painel",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "lang": "pt-BR",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

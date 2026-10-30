@@ -1,0 +1,45 @@
+/* Ícones (SVG estilo SF Symbols) */
+export const ICONS = {
+  grid: "<svg viewBox=\"0 0 24 24\" fill=\"currentColor\"><rect x=\"3\" y=\"3\" width=\"8\" height=\"8\" rx=\"2.2\"/><rect x=\"13\" y=\"3\" width=\"8\" height=\"8\" rx=\"2.2\"/><rect x=\"3\" y=\"13\" width=\"8\" height=\"8\" rx=\"2.2\"/><rect x=\"13\" y=\"13\" width=\"8\" height=\"8\" rx=\"2.2\"/></svg>",
+  cal: "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"><rect x=\"3\" y=\"4.5\" width=\"18\" height=\"16.5\" rx=\"3.5\"/><path d=\"M3 9.5h18M8 2.8v3.4M16 2.8v3.4\"/></svg>",
+  list: "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\"><path d=\"M9 6h11M9 12h11M9 18h11\"/><circle cx=\"4.5\" cy=\"6\" r=\"1.3\" fill=\"currentColor\"/><circle cx=\"4.5\" cy=\"12\" r=\"1.3\" fill=\"currentColor\"/><circle cx=\"4.5\" cy=\"18\" r=\"1.3\" fill=\"currentColor\"/></svg>",
+  team: "<svg viewBox=\"0 0 24 24\" fill=\"currentColor\"><circle cx=\"9\" cy=\"8\" r=\"3.6\"/><path d=\"M2.5 19.5c.8-3.4 3.4-5.3 6.5-5.3s5.7 1.9 6.5 5.3c.1.5-.2.9-.7.9H3.2c-.5 0-.8-.4-.7-.9Z\"/><circle cx=\"17\" cy=\"9\" r=\"2.8\" opacity=\".6\"/><path d=\"M16.8 13.4c2.4.1 4.2 1.7 4.8 4.3.1.4-.2.8-.6.8h-3.6c-.2-1.9-.9-3.6-2.2-4.8.5-.2 1-.3 1.6-.3Z\" opacity=\".6\"/></svg>",
+  people: "<svg viewBox=\"0 0 24 24\" fill=\"currentColor\"><circle cx=\"12\" cy=\"8\" r=\"4.2\"/><path d=\"M3.5 20.2C4.6 16.4 8 14.2 12 14.2s7.4 2.2 8.5 6c.2.5-.2.8-.7.8H4.2c-.5 0-.9-.3-.7-.8Z\"/></svg>",
+  money: "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"><rect x=\"2.5\" y=\"6\" width=\"19\" height=\"12\" rx=\"2.5\"/><circle cx=\"12\" cy=\"12\" r=\"2.6\"/><path d=\"M6 9.5v5M18 9.5v5\"/></svg>",
+  scissors: "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"><circle cx=\"6\" cy=\"6\" r=\"3\"/><circle cx=\"6\" cy=\"18\" r=\"3\"/><path d=\"M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12\"/></svg>",
+  ticket: "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linejoin=\"round\"><path d=\"M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v8a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2Z\"/><path d=\"M14 6v12\" stroke-dasharray=\"2 2.4\"/></svg>",
+  gauge: "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"><path d=\"M4 17a8 8 0 1 1 16 0\"/><path d=\"m12 17 4-5\"/></svg>",
+  warn: "<svg viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M10.3 3.9a2 2 0 0 1 3.4 0l8 13.9A2 2 0 0 1 20 21H4a2 2 0 0 1-1.7-3.2ZM12 9a1 1 0 0 0-1 1v4a1 1 0 0 0 2 0v-4a1 1 0 0 0-1-1Zm0 8.8a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4Z\"/></svg>",
+  up: "<svg viewBox=\"0 0 12 12\" fill=\"currentColor\"><path d=\"M6 2 11 9H1Z\"/></svg>",
+  down: "<svg viewBox=\"0 0 12 12\" fill=\"currentColor\"><path d=\"M6 10 1 3h10Z\"/></svg>",
+  left: "<svg viewBox=\"0 0 14 14\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9 2 4 7l5 5\"/></svg>",
+  right: "<svg viewBox=\"0 0 14 14\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m5 2 5 5-5 5\"/></svg>",
+  check: "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m5 12.5 4.5 4.5L19 7.5\"/></svg>",
+  x: "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\"><path d=\"M6 6l12 12M18 6 6 18\"/></svg>",
+  clock: "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M12 7v5l3 2\"/></svg>",
+  dot: "<svg viewBox=\"0 0 12 12\" fill=\"currentColor\"><circle cx=\"6\" cy=\"6\" r=\"3.2\"/></svg>",
+  bell: "<svg viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M12 2.5a6 6 0 0 0-6 6v3.6l-1.7 3A1 1 0 0 0 5.2 16.6h13.6a1 1 0 0 0 .9-1.5l-1.7-3V8.5a6 6 0 0 0-6-6Zm-2.6 15.6a2.7 2.7 0 0 0 5.2 0Z\"/></svg>",
+  plus: "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\"><path d=\"M12 5v14M5 12h14\"/></svg>",
+  search: "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\"><circle cx=\"10.5\" cy=\"10.5\" r=\"6.5\"/><path d=\"m20 20-4.6-4.6\"/></svg>",
+  wa: "<svg viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5 0-1.1.1-3.5-.9-3-1.2-4.9-4.2-5-4.4-.2-.2-1.2-1.6-1.2-3s.8-2.2 1-2.5c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .7.5l1 2.3c.1.2.1.4 0 .6l-.4.6-.5.5c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.2 1.4 2.5 1.5.3.2.5.1.7 0l1-1.2c.2-.3.4-.3.7-.2l2.2 1c.3.2.5.3.6.4.1.2.1.6-.1 1.1Z\"/></svg>",
+  home: "<svg viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M12 3.2 2.6 11a.9.9 0 0 0 1.2 1.4l.7-.6V19a2 2 0 0 0 2 2h3.3v-5.2c0-.6.5-1 1-1h2.4c.5 0 1 .4 1 1V21h3.3a2 2 0 0 0 2-2v-7.2l.7.6A.9.9 0 0 0 21.4 11Z\"/></svg>",
+  info: "<svg viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 4.6a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8Zm1.6 10.9h-3.2a.8.8 0 0 1 0-1.6h.8v-3.6h-.6a.8.8 0 0 1 0-1.6h1.6c.4 0 .8.4.8.8v4.4h.6a.8.8 0 0 1 0 1.6Z\"/></svg>",
+  pin: "<svg viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z\"/></svg>",
+  phone: "<svg viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1Z\"/></svg>",
+  card: "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><rect x=\"2.5\" y=\"5\" width=\"19\" height=\"14\" rx=\"3\"/><path d=\"M2.5 10h19\"/></svg>",
+  sun: "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"><circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4\"/></svg>",
+  sunset: "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"><path d=\"M17 18a5 5 0 0 0-10 0M12 2v7M4.2 10.2l1.4 1.4M1 18h2M21 18h2M18.4 11.6l1.4-1.4M23 22H1M8 6l4 4 4-4\"/></svg>",
+  moon: "<svg viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z\"/></svg>",
+  person: "<svg viewBox=\"0 0 24 24\" fill=\"currentColor\"><circle cx=\"12\" cy=\"8\" r=\"4.2\"/><path d=\"M3.5 20.2C4.6 16.4 8 14.2 12 14.2s7.4 2.2 8.5 6c.2.5-.2.8-.7.8H4.2c-.5 0-.9-.3-.7-.8Z\"/></svg>",
+  ig: "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"5\"/><circle cx=\"12\" cy=\"12\" r=\"4\"/><circle cx=\"17.5\" cy=\"6.5\" r=\"1\" fill=\"currentColor\"/></svg>",
+  map: "<svg viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M21.7 2.3a1 1 0 0 0-1.1-.2L2.7 9.6a1 1 0 0 0 .1 1.9l7.3 2.3 2.3 7.3a1 1 0 0 0 1.9.1L21.9 3.4a1 1 0 0 0-.2-1.1Z\"/></svg>",
+  scheck: "<svg viewBox=\"0 0 12 12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m2 6.5 2.5 2.5L10 3.5\"/></svg>",
+  sx: "<svg viewBox=\"0 0 12 12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\"><path d=\"M3 3l6 6M9 3 3 9\"/></svg>",
+  sclock: "<svg viewBox=\"0 0 12 12\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\"><circle cx=\"6\" cy=\"6\" r=\"4.6\"/><path d=\"M6 3.6V6l1.6 1\"/></svg>",
+  chev: "<svg class=\"chev\" viewBox=\"0 0 9 14\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M1.5 1.5 7 7l-5.5 5.5\"/></svg>",
+} as const;
+
+export type IconName = keyof typeof ICONS;
+export function Icon({ name }: { name: IconName }) {
+  return <span style={{ display: "contents" }} dangerouslySetInnerHTML={{ __html: ICONS[name] }} />;
+}

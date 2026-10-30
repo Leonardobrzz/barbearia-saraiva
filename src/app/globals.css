@@ -1,0 +1,25 @@
+:root{
+  --bg:#000;--bg2:#1c1c1e;--bg3:#2c2c2e;--bg4:#3a3a3c;
+  --fill:rgba(120,120,128,.24);--fill2:rgba(120,120,128,.16);
+  --label:#fff;--l2:rgba(235,235,245,.62);--l3:rgba(235,235,245,.32);
+  --sep:rgba(84,84,88,.55);
+  --green:#30d158;--red:#ff453a;--wa:#25d366;
+  --bar:#d1d1d6;--bar-hi:#fff;--grid:rgba(255,255,255,.07);
+  --good:#0ca30c;--good-t:#30d158;--warn:#fab219;--crit:#d03b3b;--crit-t:#ff6961;--info:#0a84ff;
+  --silver:linear-gradient(135deg,#ffffff 0%,#d1d1d6 45%,#8e8e93 100%);
+  --ease:cubic-bezier(.32,.72,0,1);
+  --spring:cubic-bezier(.34,1.45,.64,1);
+  --safe-b:env(safe-area-inset-bottom,0px);
+  --safe-t:env(safe-area-inset-top,0px);
+  color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:#000;color:#fff}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Inter,Roboto,sans-serif;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
+button,select,input,textarea{font:inherit;color:inherit;background:none;border:0}
+button{cursor:pointer}
+img{display:block}
+.ca-wrap{min-height:100dvh;background:#0a0a0a}
+.spinner{width:22px;height:22px;border-radius:50%;border:2.5px solid rgba(255,255,255,.2);border-top-color:#fff;animation:spin .8s linear infinite;margin:30px auto}
+@keyframes spin{to{transform:rotate(360deg)}}
+.otp{letter-spacing:.5em;font-size:24px!important;text-align:center;font-variant-numeric:tabular-nums}

@@ -3,7 +3,7 @@
 -- Fuso da barbearia: America/Fortaleza (UTC-3, sem horário de verão)
 -- =====================================================================
 
-create extension if not exists btree_gist;
+create extension if not exists btree_gist with schema extensions;
 
 -- ---------- tipos ----------
 create type public.user_role as enum ('client', 'staff', 'owner');
@@ -125,7 +125,7 @@ create table public.push_subscriptions (
 );
 
 -- ---------- updated_at ----------
-create function public.touch_updated_at() returns trigger language plpgsql as $$
+create function public.touch_updated_at() returns trigger language plpgsql set search_path = public as $$
 begin new.updated_at := now(); return new; end $$;
 create trigger appointments_touch before update on public.appointments
   for each row execute function public.touch_updated_at();

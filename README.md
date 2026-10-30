@@ -1,108 +1,134 @@
-# Barbearia Saraiva — app de agendamento + painel
+<div align="center">
 
-Dois PWAs num projeto só:
+<img src="public/logo.png" alt="Barbearia Saraiva" width="128" />
 
-| Endereço   | Para quem            | O que faz |
-|------------|----------------------|-----------|
-| `/`        | Clientes             | Escolher profissional → serviços → dia/horário livre → confirmar. Login por **nome + WhatsApp (código SMS)**. Meus horários, perfil, histórico de cortes, favorito. |
-| `/painel`  | Dono e profissionais | Visão geral (faturamento, ocupação, faltas, ranking, gráficos), agenda do dia em tempo real, lista com filtros, bloqueios/folgas, equipe e comissões, serviços/preços/horário de funcionamento, clientes (melhores, sumidos, faltosos). Notificação push de novo agendamento. |
+# Barbearia Saraiva
 
-**Stack:** Next.js 15 (App Router, TypeScript) · Supabase (Postgres, Auth, Realtime, RLS) · Web Push (VAPID) · deploy na Vercel.
+**Agendamento online e gestão para a Barbearia Saraiva — Parque Santa Rosa, Fortaleza/CE**
 
----
+![Next.js](https://img.shields.io/badge/Next.js-15-000000?logo=nextdotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3FCF8E?logo=supabase&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=white)
+![PWA](https://img.shields.io/badge/PWA-5A0FC8?logo=pwa&logoColor=white)
 
-## Como o banco garante as regras
-
-Tudo está em `supabase/migrations/`:
-
-- **Sem horário duplicado:** uma *exclusion constraint* no Postgres impede dois agendamentos sobrepostos para o mesmo profissional, mesmo se duas pessoas clicarem ao mesmo tempo.
-- **Agendar** passa pela função `book_appointment`. Ela confere se o serviço é da área do profissional, se está dentro do horário de funcionamento, se não cai num bloqueio, e calcula preço e duração no servidor (o cliente não consegue mandar outro valor).
-- **Horários livres:** `get_available_slots` e `get_available_days`.
-- **Painel:** `dashboard` (métricas) e `clients_report` (clientes).
-- **Permissões (RLS):**
-  - o cliente só vê os próprios agendamentos;
-  - o barbeiro só vê e altera a própria agenda e só bloqueia os próprios horários;
-  - o dono vê e edita tudo;
-  - ninguém altera preço de agendamento existente: só status, forma de pagamento e observação podem mudar.
-- **Preço histórico:** o valor de cada serviço é copiado para o agendamento. Mudar a tabela de preços não altera o passado.
+</div>
 
 ---
 
-## Colocar no ar (passo a passo)
+São dois aplicativos num projeto só, os dois instaláveis no celular:
 
-### 1. Supabase
-1. Crie a conta/organização da barbearia e um projeto na região **South America (São Paulo)**.
-2. Em **SQL Editor**, rode na ordem:
-   1. `supabase/migrations/20261030000001_schema.sql`
-   2. `supabase/migrations/20261030000002_security.sql`
-   3. `supabase/migrations/20261030000003_functions.sql`
-   4. `supabase/seed.sql` (horários, profissionais e serviços — **preços e durações são exemplos**)
+- **App do cliente:** o cliente escolhe o barbeiro, os serviços e um horário livre, e confirma em poucos toques.
+- **Painel da barbearia:** o dono acompanha o faturamento e a equipe, e cada barbeiro cuida da própria agenda.
 
-   Se preferir pelo terminal: `npx supabase link --project-ref <ref>` e `npx supabase db push`.
-3. **Authentication → Providers:**
-   - **Phone:** ligar e configurar um provedor de SMS (Twilio, MessageBird, Vonage…). Cada SMS tem custo no provedor. Para testar sem gastar, cadastre números de teste em *Phone → Test OTP* (ex.: `5585999998888=123456`).
-   - **Email:** deixar ligado (é o login do dono e dos barbeiros).
-4. **Conta do dono:**
-   1. Em *Authentication → Users → Add user*, crie com e-mail e senha e marque *Auto Confirm*.
-   2. No SQL Editor, rode:
-   ```sql
-   update public.profiles set role = 'owner', name = 'Saraiva'
-   where id = (select id from auth.users where email = 'EMAIL_DO_DONO');
-   ```
-   Os barbeiros o dono cria pelo próprio painel: **Equipe → Editar → Criar acesso**.
+<div align="center">
+  <img src="docs/app-inicio.png" width="200" />
+  <img src="docs/app-horarios.png" width="200" />
+  <img src="docs/app-confirmado.png" width="200" />
+  <img src="docs/app-perfil.png" width="200" />
+</div>
 
-### 2. Chaves de notificação
-```bash
-npm install
-npm run vapid      # gera a chave pública e a privada
+## Funcionalidades
+
+### Para o cliente
+- **Login sem senha:** só nome e WhatsApp, confirmados por código SMS.
+- **Agendamento em 4 passos:** profissional → serviços → dia e horário → confirmação.
+  - Só aparecem horários que comportam a duração total dos serviços escolhidos.
+  - O que é de unhas e estética fica com a manicure, o que é de barbearia fica com os barbeiros.
+- **Meus horários:** próximos atendimentos, com opção de cancelar ou falar com a barbearia no WhatsApp.
+- **Perfil:**
+  - histórico de cortes, com botão de **repetir** o último serviço;
+  - profissional favorito;
+  - observação de "como gosto do meu corte", que já vai preenchida em cada agendamento.
+- Localização, contato e horário de funcionamento.
+
+### Para a barbearia
+<div align="center">
+  <img src="docs/painel-visao-geral.png" width="820" />
+</div>
+
+- **Visão geral (por dia, 7 ou 30 dias):**
+  - faturamento, atendimentos, ticket médio, ocupação da agenda e faltas, com comparação com o período anterior;
+  - ranking da equipe;
+  - serviços mais vendidos e recebimento por forma de pagamento.
+- **Agenda do dia:** cada profissional numa coluna. Ela se atualiza em tempo real quando chega um agendamento novo.
+- **Ações no atendimento:** marcar como atendido, falta ou cancelado, e registrar a forma de pagamento.
+- **Encaixes:** lançar horários do balcão ou do WhatsApp, só em horários livres.
+- **Bloqueios e folgas:** almoço, dia de folga ou a barbearia inteira (feriado).
+- **Equipe e comissões:** comissão por profissional, valor a pagar no período e criação do login de cada barbeiro.
+- **Serviços e horários:** preços, durações e horário de funcionamento editáveis pelo painel.
+- **Clientes:** melhores clientes, novos clientes, clientes "sumidos" (com mensagem pronta pra chamar de volta) e clientes que mais faltam.
+- **Notificação push** no celular do dono e do barbeiro a cada novo agendamento ou cancelamento.
+- **Visão do barbeiro:** cada um vê só a própria agenda e os próprios ganhos.
+
+<div align="center">
+  <img src="docs/painel-agenda.png" width="820" />
+</div>
+
+## Arquitetura
+
+| Camada | Tecnologia |
+|---|---|
+| Front-end | Next.js 15 (App Router) + TypeScript, CSS próprio com visual inspirado no iOS |
+| Back-end | Supabase: PostgreSQL, Auth (SMS e e-mail), Realtime |
+| Regras de negócio | Funções SQL (RPC) e Row Level Security |
+| Notificações | Web Push (VAPID) + Service Worker |
+| Distribuição | PWA (cliente e painel com manifestos separados) |
+
+### Decisões de projeto
+- **Sem horário duplicado:** uma *exclusion constraint* (`btree_gist`) impede, no próprio banco, dois agendamentos sobrepostos para o mesmo profissional. Funciona mesmo quando dois clientes confirmam ao mesmo tempo.
+- **Validação no servidor:** o agendamento passa pela função `book_appointment`, que confere:
+  - a área do serviço e do profissional;
+  - o horário de funcionamento;
+  - os bloqueios.
+
+  Ela também calcula preço e duração. O cliente nunca envia o valor.
+- **Preço histórico:** cada agendamento guarda uma cópia do nome e do preço dos serviços. Mudar a tabela não altera o que já foi feito.
+- **Permissões no banco (RLS):**
+  - o cliente vê só os próprios horários;
+  - o barbeiro vê e altera só a própria agenda;
+  - o dono vê tudo;
+  - depois de criado, um agendamento só pode ter status, forma de pagamento e observação alterados.
+- **Métricas calculadas no Postgres:** as funções `dashboard` e `clients_report` devolvem os indicadores prontos para o painel.
+
+### Modelo de dados
 ```
-
-### 3. Vercel
-1. Suba o projeto pro GitHub e importe na Vercel.
-2. Configure as variáveis de ambiente (modelo em `.env.example`):
-   - `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY`: em *Project Settings → API* (chave publishable).
-   - `SUPABASE_SERVICE_ROLE_KEY`: chave secreta, **só no servidor**.
-   - `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY` e `VAPID_SUBJECT`: as chaves do passo 2.
-   - `WEBHOOK_SECRET`: um texto longo aleatório.
-3. Em *Authentication → URL Configuration* do Supabase, coloque a URL do site em *Site URL*.
-
-### 4. Webhook (dispara o push)
-No Supabase: **Database → Webhooks → Create**:
-- Tabela `appointments`, eventos **Insert** e **Update**
-- Tipo HTTP Request, `POST https://SEU-SITE/api/webhooks/appointment`
-- Header `x-webhook-secret: <o mesmo WEBHOOK_SECRET>`
-
-O dono e o barbeiro do horário recebem a notificação quando um cliente agenda pelo app ou cancela.
-
-### 5. Instalar nos celulares
-- **Clientes:** abrir o site → *Compartilhar → Adicionar à Tela de Início* (iPhone) ou *Instalar app* (Android).
-- **Barbeiros e dono:** abrir `/painel`, entrar, instalar do mesmo jeito, depois ligar **Notificações** (menu lateral ou aba *Mais*).
-  - No iPhone, o push **só funciona com o app instalado na tela de início** (iOS 16.4 ou mais novo).
-
----
-
-## Rodar localmente
-```bash
-cp .env.example .env.local   # preencha com as chaves do projeto
-npm install
-npm run dev                  # http://localhost:3000 e http://localhost:3000/painel
+profiles ─────────┐
+professionals ────┼──< appointments >── appointment_services >── services
+time_blocks ──────┘
+business_hours      push_subscriptions
 ```
 
 ## Estrutura
 ```
-supabase/migrations/   esquema, segurança (RLS) e funções
-supabase/seed.sql      dados iniciais
-src/app/(cliente)/     app do cliente: início, horários, perfil, barbearia
-src/app/painel/        painel: visão geral, agenda, agendamentos, bloqueios, equipe, serviços, clientes
-src/app/api/           criar acesso de barbeiro, excluir conta (LGPD), webhook de push
-src/components/        casca do app, agendamento, painel, ícones
-src/styles/            visual (escopado: .ca = cliente, .pn = painel)
-public/sw.js           service worker (push + cache de imagens)
-public/team/           fotos dos profissionais
+src/
+├── app/
+│   ├── (cliente)/        início, meus horários, perfil, a barbearia
+│   ├── painel/           visão geral, agenda, agendamentos, bloqueios, equipe, serviços, clientes
+│   └── api/              acessos da equipe, exclusão de conta, webhook de notificações
+├── components/           app do cliente, painel, ícones
+├── lib/                  clientes Supabase, tipos e formatação
+└── styles/
+supabase/
+├── migrations/           esquema, segurança e funções
+└── seed.sql              equipe, serviços e horário de funcionamento
+public/
+├── sw.js                 service worker
+└── team/                 fotos da equipe
 ```
 
-## Pendências antes de lançar
-- Nomes reais dos barbeiros 5–8 e da manicure, além de preços, durações e horário de funcionamento. Tudo dá pra ajustar pelo painel.
-- Comissões: o seed usa 50% para barbeiros e 60% para a manicure. Confirmar com o dono.
-- Instagram da barbearia, se quiser o botão.
-- **Fase 2:** lembrete automático no WhatsApp do cliente (API oficial da Meta) e upload de foto pelo painel (Supabase Storage).
+## Rodando localmente
+```bash
+npm install
+cp .env.example .env.local   # preencher com as chaves do projeto Supabase
+npm run dev
+```
+O app abre em `localhost:3000` e o painel em `localhost:3000/painel`.
+
+---
+
+<div align="center">
+
+Desenvolvido por **[Leonardo Braz](https://github.com/Leonardobrzz)**
+
+</div>

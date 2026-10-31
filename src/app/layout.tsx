@@ -4,9 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Barbearia Saraiva",
   description: "Agende seu horário na Barbearia Saraiva — Parque Santa Rosa, Fortaleza.",
-  manifest: "/manifest.webmanifest",
   icons: { icon: "/icons/icon-192.png", apple: "/icons/apple-touch-icon.png" },
-  appleWebApp: { capable: true, title: "Saraiva", statusBarStyle: "black-translucent" },
 };
 
 export const viewport: Viewport = {

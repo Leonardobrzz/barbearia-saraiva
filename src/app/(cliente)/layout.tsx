@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import "@/styles/app.css";
 import ClientApp, { type Catalog } from "@/components/cliente/ClientApp";
 import { supabaseServer } from "@/lib/supabase/server";
+
+// cada área tem o próprio manifesto: o ícone do cliente abre em "/", o do painel em "/painel"
+export const metadata: Metadata = {
+  manifest: "/manifest.webmanifest",
+  appleWebApp: { capable: true, title: "Saraiva", statusBarStyle: "black-translucent" },
+};
 
 export const revalidate = 60; // catálogo (equipe, serviços, horários) atualiza a cada minuto
 
